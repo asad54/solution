@@ -1,0 +1,48 @@
+extends layout
+block content
+ form(method="POST" action="/login")
+  div
+      label type here 
+      input(type="text" name="name" )
+      br
+      label password here
+      input(type="password" name="password")
+      br
+      input(type="submit"  value="click me" )
+      -var asad=[{name:"asad",age:"23"},{name:"rana",age:"24"},{name:"waleed",age:"25"}]
+ for i in asad
+   p #{i.name}  #{i.age}
+ br
+ form(method="POST" action="/Register")
+  div
+      label type here 
+      input(type="text" name="name" )
+      br
+      label password here
+      input(type="password" name="password")
+      br
+      label id here
+      input(type="number" name="id" )
+      br
+      input(type="submit"  value="register" )
+      script.
+       - $("input[name='id']").keyup(function(){
+      
+        $.get('http://localhost:3000/checkit?text='+$("input[name='id']").val(), function(data, status){
+        console.log(data['some']);
+        
+        var chk=data['some'];
+        if(chk==0)
+        {$("#ch").empty();$("#ch").append('avaialable')}
+        else
+        {$("#ch").empty();$("#ch").append(' not avaialable')}
+        
+       });
+       });
+  p#ch
+
+
+     
+   
+
+  
